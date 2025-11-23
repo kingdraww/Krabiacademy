@@ -1,0 +1,38 @@
+<div class="progress-container">
+    <div id="overall-progress-bar" class="progress-bar-overall" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <span class="progress-label">Genel İlerleme: <span id="overall-progress-percent">0%</span></span>
+        <div class="progress-fill"></div>
+    </div>
+    
+    <div class="module-progress-list">
+        {% assign total_lessons = 0 %}
+        
+        {% for module in site.modules %}
+            
+            {% assign module_lessons = site.posts | where: 'module', module.slug %}
+            {% assign total_lessons = total_lessons | plus: module_lessons.size %}
+            
+            <div class="module-progress-item" id="progress-{{ module.slug }}" data-module-slug="{{ module.slug }}" data-total-lessons="{{ module_lessons.size }}">
+                
+                <h4 class="module-progress-title">{{ module.title }} ({{ module_lessons.size }} Ders)</h4>
+                
+                <div class="progress-bar-module" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-fill-module"></div>
+                </div>
+                
+                <p class="module-progress-details">
+                    <span class="completed-count">0</span> / 
+                    <span class="total-count">{{ module_lessons.size }}</span> Tamamlandı
+                </p>
+                
+                <ul class="lesson-slugs" style="display:none;">
+                    {% for lesson in module_lessons %}
+                        <li data-lesson-slug="{{ lesson.slug }}"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+    <input type="hidden" id="total-lesson-count" value="{{ total_lessons }}">
+</div>
