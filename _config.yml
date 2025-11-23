@@ -1,0 +1,61 @@
+# =======================================================
+# 1. TEMEL SITE AYARLARI
+# =======================================================
+
+title: Kripto Okuryazarlığı Rehberi
+description: Dış API gerektirmeyen, tamamen ücretsiz ve etkileşimli temel kripto para ve blockchain eğitim platformu.
+tagline: Blockchain'in Temellerini Keşfet
+baseurl: "" # GitHub Pages için genellikle boş bırakılır. Özel alan adı kullanılıyorsa "" kalır.
+url: "https://kullaniciadiniz.github.io/repo-adiniz" # Sitenizin canlı URL'sini buraya yazın
+
+# Sitenin yazarı/yapımcısı bilgisi
+author:
+  name: Adınız Soyadınız (veya Proje Adı)
+  email: ornek@eposta.com
+  github: kullaniciadiniz
+
+# =======================================================
+# 2. JEKYLL YAPILANDIRMASI
+# =======================================================
+
+# Statik site üreticisini belirtir (Gerekli)
+markdown: kramdown
+highlighter: rouge # Kod bloklarını renklendirmek için
+permalink: /:title/ # Makale URL'lerinin sadece başlık olmasına izin verir
+
+# Oluşturulmayacak dosyalar/klasörler (performans için)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - README.md
+  - LICENSE
+  - vendor/
+
+# Sayfalama ayarları (Eğer ana sayfada makale listesi gösterecekseniz)
+# paginate: 10
+# paginate_path: "/page/:num/"
+
+# =======================================================
+# 3. ÖZEL AYARLAR (İlerleme Takibi için Modül Tanımları)
+# =======================================================
+
+# Eğitimi mantıksal modüllere ayırmak ve ilerleme takibini kolaylaştırmak için.
+# Bu veriler, İlerleme Çubuğunu (_includes/progress-bar.html) oluşturmak için kullanılır.
+
+modules:
+  - title: 1. Blockchain Temelleri
+    slug: blockchain-temelleri
+  - title: 2. Güvenlik ve Cüzdanlar
+    slug: guvenlik-cuzdanlar
+  - title: 3. Kripto Terminolojisi
+    slug: kripto-terminolojisi
+  - title: 4. Vaka Çalışmaları ve Tarih
+    slug: vaka-calismalari
+
+# =======================================================
+# 4. TEMA VE STİL AYARLARI (Opsiyonel)
+# =======================================================
+
+# theme: jekyll-theme-minimal # Eğer bir tema kullanacaksanız buraya yazın
+# show_excerpts: true
