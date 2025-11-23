@@ -1,0 +1,91 @@
+---
+layout: default # Temel HTML yapısını default.html'den miras al
+---
+
+<article class="article-container" data-slug="{{ page.slug | default: page.title | slugify }}">
+    
+    <header class="article-header">
+        <nav class="breadcrumb">
+            {% assign current_module = site.modules | where: 'slug', page.module | first %}
+            <a href="{{ '/' | relative_url }}">Ana Sayfa</a> / 
+            {% if current_module %}
+                <a href="{{ '/' | relative_url }}#{{ current_module.slug }}">{{ current_module.title }}</a> / 
+            {% endif %}
+            <span class="current-page">{{ page.title }}</span>
+        </nav>
+        <h1 class="article-title">{{ page.title }}</h1>
+        <p class="article-meta">
+            Modül: <strong>{{ current_module.title | default: "Genel" }}</strong> | 
+            Sıra: <strong>{{ page.order }}</strong>
+        </p>
+    </header>
+
+    <section class="article-content">
+        {{ content }}
+    </section>
+
+    <hr>
+
+    {% if page.quiz %}
+        <section class="quiz-section">
+            <h2>❓ Bilginizi Kontrol Edin</h2>
+            <div id="quiz-{{ page.slug | slugify }}" class="static-quiz">
+                {% include quiz-template.html quiz=page.quiz %} 
+            </div>
+            <div id="quiz-feedback" class="feedback-message"></div>
+        </section>
+        <hr>
+    {% endif %}
+
+    <section class="notes-section">
+        <h2>📝 Notlarınız</h2>
+        <textarea id="user-notes-{{ page.slug | slugify }}" class="user-notes-area" rows="6" placeholder="Bu dersle ilgili kendi notlarınızı buraya yazın. Notlarınız tarayıcınızda saklanacaktır."></textarea>
+        <button class="save-notes-button" data-lesson-slug="{{ page.slug | slugify }}">Notları Kaydet</button>
+        <p class="notes-status"></p>
+    </section>
+    
+    <hr>
+
+    <section class="completion-section">
+        <button id="mark-as-complete" class="button success-button" data-lesson-slug="{{ page.slug | slugify }}">
+            ✅ Dersi Tamamla Olarak İşaretle
+        </button>
+        
+        {% assign sorted_posts = site.posts | sort: 'order' %}
+        {% for post in sorted_posts %}
+            {% if post.url == page.url %}
+                {% assign next_index = forloop.index | plus: 1 %}
+                {% assign next_post = sorted_posts[next_index] %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+
+        {% if next_post %}
+            <a href="{{ next_post.url | relative_url }}" class="button primary-button next-lesson-button">
+                Sonraki Ders: {{ next_post.title }} &raquo;
+            </a>
+        {% else %}
+            <p>Tebrikler! Bu modüldeki tüm dersleri tamamladınız.</p>
+        {% endif %}
+    </section>
+
+</article>
+
+<script src="{{ '/assets/js/localstorage-tracker.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+<script>
+    // main.js içindeki fonksiyonları tetikle
+    document.addEventListener('DOMContentLoaded', () => {
+        // İlerleme durumunu ve notları yükle
+        loadLessonState('{{ page.slug | slugify }}');
+        
+        // Etkileşimli Sözlük özelliğini etkinleştir
+        initGlossary(); 
+        
+        // Quiz mantığını etkinleştir (Eğer quiz varsa)
+        {% if page.quiz %}
+            initQuiz('quiz-{{ page.slug | slugify }}');
+        {% endif %}
+    });
+</script>
