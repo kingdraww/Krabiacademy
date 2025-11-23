@@ -1,0 +1,50 @@
+{% comment %}
+    Bu include dosyası, quiz verilerini 'quiz' adında bir değişken olarak bekler.
+    Kullanım Örneği (article.html içinde):
+    {% include quiz-template.html quiz=page.quiz %}
+{% endcomment %}
+
+{% if include.quiz %}
+<form class="quiz-form" data-quiz-id="{{ page.slug | slugify }}">
+    
+    {% for question in include.quiz.questions %}
+        <div class="quiz-question-block" data-correct-answer="{{ question.answer | downcase | slugify }}">
+            
+            <h4 class="question-text">{{ forloop.index }}. {{ question.text }}</h4>
+            
+            <ul class="quiz-options-list">
+                {% assign option_letters = "A B C D E F" | split: " " %}
+                {% for option in question.options %}
+                    <li class="quiz-option-item">
+                        <input type="radio" 
+                               id="q{{ forloop.parentloop.index }}-o{{ forloop.index }}" 
+                               name="q{{ forloop.parentloop.index }}" 
+                               value="{{ option_letters[forloop.index0] | downcase }}" 
+                               required>
+                        <label for="q{{ forloop.parentloop.index }}-o{{ forloop.index }}">
+                            {{ option_letters[forloop.index0] }}) {{ option }}
+                        </label>
+                    </li>
+                {% endfor %}
+            </ul>
+            
+            <p class="question-feedback-area" id="feedback-q{{ forloop.index }}"></p>
+
+        </div>
+    {% endfor %}
+    
+    <div class="quiz-actions">
+        <button type="button" class="button check-quiz-button" onclick="checkQuiz(this.form)">Cevapları Kontrol Et</button>
+        <button type="button" class="button reset-quiz-button" style="display:none;" onclick="resetQuiz(this.form)">Yeniden Dene</button>
+    </div>
+
+    <div class="quiz-summary" style="display:none;">
+        <h3>Quiz Sonucu</h3>
+        <p>Doğru Sayısı: <span id="quiz-score">0</span> / {{ include.quiz.questions | size }}</p>
+        <p id="quiz-message"></p>
+    </div>
+
+</form>
+{% else %}
+    <p>Bu ders için henüz bir bilgi kontrolü (quiz) hazırlanmamıştır.</p>
+{% endif %}
