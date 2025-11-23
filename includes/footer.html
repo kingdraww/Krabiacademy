@@ -1,0 +1,37 @@
+<footer class="site-footer">
+    <div class="footer-content">
+        
+        <div class="footer-links">
+            <h3>Hızlı Erişim</h3>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">Ana Sayfa</a></li>
+                <li><a href="{{ '/' | relative_url }}#module-list">Eğitim Modülleri</a></li>
+                <li><a href="{{ '/hakkimizda' | relative_url }}">Hakkımızda</a></li>
+                <li><a href="{{ '/gizlilik' | relative_url }}">Gizlilik Politikası</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Proje Bilgisi</h3>
+            <p>Bu proje, <strong>GitHub Pages</strong> üzerinde tamamen ücretsiz ve statik olarak barındırılmaktadır.</p>
+            {% if site.author.github %}
+                <p>
+                    <a href="https://github.com/{{ site.author.github }}/{{ site.github.repository_name }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> Projeyi GitHub'da Gör
+                    </a>
+                </p>
+            {% endif %}
+            </div>
+
+        <div class="footer-disclaimer">
+            <h3>Yasal Not</h3>
+            <p>
+                &copy; {{ site.time | date: "%Y" }} {{ site.title }}. Tüm Hakları Saklıdır.
+            </p>
+            <p class="disclaimer-text">
+                Bu sitedeki içerik yalnızca **eğitim amaçlıdır** ve finansal tavsiye teşkil etmez. Kripto varlıkları yüksek risk içerir.
+            </p>
+        </div>
+
+    </div>
+</footer>
