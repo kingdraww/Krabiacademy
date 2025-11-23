@@ -1,0 +1,29 @@
+# Kripto ve Blockchain Rehberi için Etkileşimli Sözlük Verileri
+# Bu veriler, JS tarafından makale metinleri ile eşleştirilerek tooltipler oluşturulur.
+
+- term: "Blockchain"
+  definition: "Merkezi olmayan, dağıtılmış ve şifreli bir defter (kayıt sistemi). İşlemlerin bloklar halinde zaman damgasıyla zincirlendiği bir teknolojidir."
+
+- term: "Kripto Para"
+  definition: "İşlemleri güvence altına almak için kriptografi kullanan, merkezi olmayan dijital veya sanal para birimidir."
+
+- term: "Private Key"
+  definition: "Özel Anahtar. Kripto cüzdanınızdaki varlıklara erişim sağlamak ve işlemleri imzalamak için kullanılan gizli, benzersiz ve kritik koddur."
+
+- term: "Public Key"
+  definition: "Genel Anahtar. Cüzdanınızın herkese açık adresini oluşturmak için Private Key ile ilişkilendirilen şifreli bir koddur. Para almak için kullanılır."
+
+- term: "Mining"
+  definition: "Madencilik. Yeni blokları doğrulamak ve blokzincirine eklemek için karmaşık matematiksel problemleri çözme sürecidir. Karşılığında kripto para ödülü kazanılır."
+
+- term: "Staking"
+  definition: "Kripto paralarınızı Proof-of-Stake (PoS) ağlarında kilitleyerek, ağı güvence altına almaya ve karşılığında ödül kazanmaya yardımcı olma işlemidir."
+
+- term: "Gas Fee"
+  definition: "Ethereum gibi ağlarda bir işlemi gerçekleştirmek için ödenen işlem ücreti. Ağ yoğunluğuna göre değişir."
+
+- term: "NFT"
+  definition: "Non-Fungible Token (Takas Edilemez Token). Benzersiz bir dijital veya gerçek varlığın sahipliğini temsil eden, blokzincirinde saklanan tekil bir kriptografik varlıktır."
+
+- term: "DeFi"
+  definition: "Decentralized Finance (Merkeziyetsiz Finans). Geleneksel finansal aracıları (bankalar gibi) ortadan kaldıran, blokzinciri tabanlı finansal uygulamalar ve protokoller için kullanılan genel terimdir."
