@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+
+    <style>
+        /* Tooltip (Sözlük) gizleme stili */
+        .glossary-tooltip {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            z-index: 1000;
+            font-size: 0.9em;
+        }
+        /* Tamamlanmış dersleri işaretleyen stil */
+        .lesson-status.completed {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="{% if page.layout %}layout-{{ page.layout }}{% else %}layout-default{% endif %}">
+    
+    <header>
+        {% include header.html %}
+    </header>
+
+    <div id="content-wrapper">
+        {{ content }}
+    </div>
+
+    <footer>
+        {% include footer.html %}
+    </footer>
+
+    </body>
+</html>
