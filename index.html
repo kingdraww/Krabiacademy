@@ -1,0 +1,76 @@
+---
+layout: default
+title: Ana Sayfa
+---
+
+<main id="app-container">
+    <section class="hero-section">
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-tagline">{{ site.tagline }}</p>
+        <p class="site-description">{{ site.description }}</p>
+        
+        <div class="cta-container">
+            <a href="#module-list" class="button primary-button">Öğrenmeye Başla</a>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="progress-section" aria-labelledby="progress-heading">
+        <h2 id="progress-heading">🚀 Öğrenme İlerlemeniz</h2>
+        
+        {% include progress-bar.html %}
+
+        <p class="progress-summary" id="completion-summary">
+            İlerleme durumu yükleniyor... (Tamamlanan: 0 / Toplam: 0)
+        </p>
+    </section>
+
+    <hr id="module-list">
+
+    <section class="modules-section" aria-labelledby="modules-heading">
+        <h2 id="modules-heading">📚 Eğitim Modülleri</h2>
+        <p>Aşağıdaki modüllerle adım adım kripto ve blockchain temellerini öğrenin.</p>
+
+        <div class="module-grid">
+            {% for module in site.modules %}
+            <article class="module-card" data-module-slug="{{ module.slug }}">
+                <h3 class="module-title">{{ module.title }}</h3>
+                
+                {% assign posts_in_module = site.posts | where: 'module', module.slug | sort: 'order' %}
+                
+                <ul class="lesson-list">
+                    {% for post in posts_in_module limit: 3 %}
+                    <li class="lesson-item">
+                        <span class="lesson-status" data-lesson-slug="{{ post.slug }}">☐</span>
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </li>
+                    {% endfor %}
+                    
+                    {% if posts_in_module.size > 3 %}
+                    <li class="lesson-item more-lessons">... ve {{ posts_in_module.size | minus: 3 }} ders daha.</li>
+                    {% endif %}
+                </ul>
+
+                {% assign first_lesson = posts_in_module | first %}
+                {% if first_lesson %}
+                    <a href="{{ first_lesson.url | relative_url }}" class="button module-start-button">Başla / Devam Et</a>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script src="{{ '/assets/js/localstorage-tracker.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    
+    <script>
+        // main.js içindeki fonksiyonu çağırarak ilerleme durumunu yükle
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof updateProgressDisplay === 'function') {
+                updateProgressDisplay(); 
+            }
+        });
+    </script>
+
+</main>
