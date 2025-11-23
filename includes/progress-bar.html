@@ -9,7 +9,7 @@
         
         {% for module in site.modules %}
             
-            {% assign module_lessons = site.posts | where: 'module', module.slug %}
+            {% assign module_lessons = site.posts | where_exp: "item", "item.module == module.slug" %}
             {% assign total_lessons = total_lessons | plus: module_lessons.size %}
             
             <div class="module-progress-item" id="progress-{{ module.slug }}" data-module-slug="{{ module.slug }}" data-total-lessons="{{ module_lessons.size }}">
@@ -27,7 +27,8 @@
                 
                 <ul class="lesson-slugs" style="display:none;">
                     {% for lesson in module_lessons %}
-                        <li data-lesson-slug="{{ lesson.slug }}"></li>
+                        {% assign lesson_slug = lesson.url | remove: '/' | slugify %}
+                        <li data-lesson-slug="{{ lesson_slug }}"></li>
                     {% endfor %}
                 </ul>
             </div>
