@@ -1,0 +1,28 @@
+<header class="site-header">
+    <div class="header-content">
+        <a href="{{ '/' | relative_url }}" class="site-logo-link">
+            <span class="site-title-text">{{ site.title }}</span>
+            <span class="site-tagline-text">{{ site.tagline }}</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Ana Gezinme">
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">Ana Sayfa</a></li>
+                <li><a href="{{ '/' | relative_url }}#module-list">Eğitim Modülleri</a></li>
+                
+                <li><a href="{{ '/hakkimizda' | relative_url }}">Hakkımızda</a></li>
+                
+                <li><a href="#progress-heading">İlerleme Durumu</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <span id="header-progress-summary" class="progress-indicator">
+                Yükleniyor...
+            </span>
+            <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                ☰ Menü
+            </button>
+        </div>
+    </div>
+</header>
